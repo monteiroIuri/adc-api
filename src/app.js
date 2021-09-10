@@ -15,9 +15,9 @@ app.use(cors())
 
 app.post('/create_post', async (req, res) => {
     try {
-        const { title, content } = req.body
+        const { title, description, content } = req.body
 
-        const post = await Post.create({ title, content })
+        const post = await Post.create({ title, description, content })
 
         res.send(post)
     } catch (err) {
@@ -51,9 +51,9 @@ app.put('/update_post/:post_id', async (req, res) =>{
     try {
         const postId = req.params.post_id
 
-        const { title, content } = req.body
+        const { title, description, content } = req.body
 
-        const post = await Post.findByIdAndUpdate(postId, { title, content }, { new: true })
+        const post = await Post.findByIdAndUpdate(postId, { title, description, content }, { new: true })
 
         res.send({ post })
     } catch (err) {
